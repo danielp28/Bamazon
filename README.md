@@ -11,19 +11,19 @@ The customer portal on Bamazon has two functions:
 2. Buy a product selected by ID.
 
 
-<!-- image for list of products-->
+
 
 After selecting an item from the list, the user is displyed the item they selected and prompted for a quantity to purchase.
 
-<!--image for user quantity selection-->
+
 
 Once the user has selected their item and the quantity they would like to purchase, the database is checked for product availibility.
 If the user has selected a quantity larger than what is in the DB, they will be notified to choose another option.
-<!-- image for overpurchase-->
+
 However, if the user quantity is less than what is in the DB, they will be notified that their item has been shipped and the DB quantity is updated.
-<!--image for DB update-->
 
 
+<img src="https://github.com/danielp28/Bamazon/blob/master/images/cust-portal.PNG">
 ============================================================================================================================================
 MANAGER PORTAL
 
@@ -33,17 +33,19 @@ The mangager portal currently has four working functions:
 3) add-inven
 4) help
 
-<!--intial prompt-->
+<img src="https://github.com/danielp28/Bamazon/blob/master/images/init-prompt.PNG">
 
 The view-inven function will display all current products in the database
-<!--mang read image-->
+<img src="https://github.com/danielp28/Bamazon/blob/master/images/mang-read.PNG">
  
 
 The low-inven function displays all inventory items with a stock count below 5
-<!--low-inven image-->
+<img src="https://github.com/danielp28/Bamazon/blob/master/images/low-inven.PNG">
+
 
 The add-inven function allows the mangager to add inventory to the item of his choice, selected again by item ID in the DB
-<!--add-inven images-->
+<img src="https://github.com/danielp28/Bamazon/blob/master/images/add-inven.PNG">
+
 
 The help function displays all available commands to the user and re-runs the program
-<!--help image-->
+<img src="https://github.com/danielp28/Bamazon/blob/master/images/mang-help.PNG">
