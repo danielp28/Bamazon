@@ -22,7 +22,7 @@ However, if the user quantity is less than what is in the DB, they will be notif
 
 
 <img src="https://github.com/danielp28/Bamazon/blob/master/images/cust-portal.PNG">
-==========================================================================================================
+
                                                          MANAGER PORTAL
 
 The mangager portal currently has four working functions:
