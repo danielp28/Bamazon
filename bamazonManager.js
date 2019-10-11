@@ -86,52 +86,54 @@ function run() {
                     type: "input",
                     message: "What is the ID of the product you would like to update?",
                     name: "mangUpdate"
+                },
+                {
+                    type: "input",
+                    message: "How many would you like to add?",
+                    name: "invenAdd"
                 }
             ]).then(answer => {
                 var mangUpdate = parseInt(answer.mangUpdate);
                 var query = "SELECT * FROM products WHERE id=" + mangUpdate;
+                var addInven = parseInt(answer.invenAdd)
                 connection.query(query, function (err, res) {
                     if (err) throw err;
                     console.log("You have selected " + res[0].product_name + ", and there are " + res[0].stock_quantity + " in stock")
-                })
-                inquirer
-                    .prompt([
-                        {
-                            type: "input",
-                            message: "How many would you like to add?",
-                            name: "invenAdd"
-                        }
-                    ]).then(add => {
-                        connection.query("SELECT * FROM products", function (err, res) {
-                            console.log("Updating your selection quantities...\n");
-                            var query = connection.query(
-                                "UPDATE products SET ? WHERE ?",
-                                [
-                                    {
-                                        stock_quantity: res[0].stock_quantity + add.invenAdd
+
+
+                    console.log("Updating your selection quantities...\n");
+                    var query = connection.query(
+                        "UPDATE products SET ? WHERE ?",
+                        [
+                            {
+                                stock_quantity: res[0].stock_quantity + addInven
                             },
-                                    {
-                                        id: mangUpdate
-                                    }
-                                ],
-                                function (err, res) {
-                                    if (err) throw err;
-                                    console.log(res.affectedRows + " products updated!\n");
+                            {
+                                id: mangUpdate
+                            }
+                        ],
+                        function (err, res) {
+                            if (err) throw err;
+                            console.log(res.affectedRows + " products updated!\n");
 
-                                    run();
-                                })
+                            run();
                         })
+                })
 
 
-                    })
             })
     }
-
-    function help() {
-        console.log("You have four option \n 1. Check all products currently in the system with view-inven \n 2. View products with less than 5 in stock with low-inven\n 3. Add more inventory to a specific product with add-inven\n 4. Add a new item to the product list with add-product.")
-        run();
-    }
+}
+    
+function addProduct() {
 
 }
+
+function help() {
+    console.log("You have four options \n 1. Check all products currently in the system with view-inven \n 2. View products with less than 5 in stock with low-inven\n 3. Add more inventory to a specific product with add-inven\n 4. Add a new item to the product list with add-product.")
+    run();
+}
+
+
 
 run();
