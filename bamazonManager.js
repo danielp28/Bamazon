@@ -102,23 +102,36 @@ function run() {
                             name: "invenAdd"
                         }
                     ]).then(add => {
+                        connection.query("SELECT * FROM products", function (err, res) {
+                            console.log("Updating your selection quantities...\n");
+                            var query = connection.query(
+                                "UPDATE products SET ? WHERE ?",
+                                [
+                                    {
+                                        stock_quantity: res[0].stock_quantity + add.invenAdd
+                            },
+                                    {
+                                        id: mangUpdate
+                                    }
+                                ],
+                                function (err, res) {
+                                    if (err) throw err;
+                                    console.log(res.affectedRows + " products updated!\n");
 
-                        var query = "UPDATE products SET ? WHERE ?"
-                        connection.query(query, [{ stock_quantity: res[0].stock_quantity + add.invenAdd }, { id: mangUpdate }], function (err, res) {
-                            {
-                                if (err) throw err;
-                                console.log(res.affectedRows + " products updated!\n");
-                                console.log(query.sql);
-                            }
-                            run();
+                                    run();
+                                })
                         })
-
 
 
                     })
             })
-        }
+    }
+
+    function help() {
+        console.log("You have four option \n 1. Check all products currently in the system with view-inven \n 2. View products with less than 5 in stock with low-inven\n 3. Add more inventory to a specific product with add-inven\n 4. Add a new item to the product list with add-product.")
+        run();
+    }
 
 }
 
-    run();
+run();
